@@ -5,10 +5,10 @@
 #include "freertos/task.h"
 #include "esp_system.h"
 #include "esp_spi_flash.h"
-#include "driver/gpio.h"
+#include "my_gpio.h"
 
-#define LED_GPIO    GPIO_NUM_2
-#define BTN_GPIO    GPIO_NUM_4
+#define LED_GPIO    eGpioNum2
+#define BTN_GPIO    eGpioNum4
 
 // Enumerations
 typedef enum ButtonState_tag
@@ -57,13 +57,9 @@ static void initIO(void)
     // FIXME:
     // Replace the following code and insert
     // code to initialize all IO pins for the assigment
-    gpio_reset_pin(LED_GPIO);
-    gpio_reset_pin(BTN_GPIO);
-    /* Set LED GPIO as a push/pull output */
-    gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
-    /* Set LED GPIO as a push/pull output */
-    gpio_set_direction(BTN_GPIO, GPIO_MODE_INPUT);
-    gpio_pullup_en(BTN_GPIO);
+    gpio_init(LED_GPIO, eOutput);
+    gpio_init(BTN_GPIO, eInput);
+
 }
 
 bool playSequence(eGameState_t gameState)
@@ -71,7 +67,7 @@ bool playSequence(eGameState_t gameState)
     // FIXME:
     // Playback the corresponding animation of the gameState parameter
     // Once playback has finished, return true, otherwise return false
-    gpio_set_level(LED_GPIO, !gpio_get_level(BTN_GPIO)); 
+    gpio_write(LED_GPIO, (gpio_read(BTN_GPIO) == eLow)? eHigh : eLow); 
     return true;
 }
 
