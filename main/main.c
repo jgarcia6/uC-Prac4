@@ -57,8 +57,8 @@ static void initIO(void)
     // FIXME:
     // Replace the following code and insert
     // code to initialize all IO pins for the assigment
-    gpio_init(LED_GPIO, eOutput);
-    gpio_init(BTN_GPIO, eInput);
+    my_gpio_init(LED_GPIO, eOutput);
+    my_gpio_init(BTN_GPIO, eInput);
 
 }
 
@@ -67,7 +67,7 @@ bool playSequence(eGameState_t gameState)
     // FIXME:
     // Playback the corresponding animation of the gameState parameter
     // Once playback has finished, return true, otherwise return false
-    gpio_write(LED_GPIO, (gpio_read(BTN_GPIO) == eLow)? eHigh : eLow); 
+    my_gpio_write(LED_GPIO, (my_gpio_read(BTN_GPIO) == eLow)? eHigh : eLow); 
     return true;
 }
 

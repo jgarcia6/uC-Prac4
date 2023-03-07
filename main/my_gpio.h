@@ -63,8 +63,8 @@ typedef enum {
     eGpioInitSuccess,   /*!< GPIO Init : Success */
 } gpioInitError_t;
 
-gpioInitError_t gpio_init(gpioNum_t gpioNum, gpioMode_t gpioMode);
-void            gpio_write(gpioNum_t gpioNum, gpioLevel_t gpioLevel); 
-gpioLevel_t     gpio_read(gpioNum_t gpioNum);
+gpioInitError_t my_gpio_init(gpioNum_t gpioNum, gpioMode_t gpioMode);
+void            my_gpio_write(gpioNum_t gpioNum, gpioLevel_t gpioLevel); 
+gpioLevel_t     my_gpio_read(gpioNum_t gpioNum);
 
 #endif
